@@ -1,0 +1,40 @@
+<body>
+
+    <h1>Welcome back, {{currentUser.Name}}!</h1>
+
+    <!-- Display User info -->
+    <div class="user-info">
+        <h2>Profile</h2>
+        <table id="talbe-user-info">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th *ngIf="authService.isUser()">DOB</th>
+                <th>Country</th>
+
+            </tr>
+            <tr>
+                <td>{{ currentUser.Name }}</td>
+                <td>{{ currentUser.EmailId }}</td>
+                <td>{{ currentUser.Phone }}</td>
+                <td *ngIf="authService.isUser()">{{ currentUser.DOB }}</td>
+                <td>{{ currentUser.Country }}</td>
+            </tr>
+        </table>
+
+        <br>
+        <!-- to editing info page-->
+        <button (click)="onEditInfo()" mat-raised-button color="primary" [disabled]="loading">Edit</button>
+        <a routerLink="/change-password" >Change Password</a>
+
+    </div>
+
+
+    <div [ngSwitch]="userGroup">
+        <app-console-member *ngSwitchCase="'isUser'"></app-console-member>
+        <app-console-mfr *ngSwitchCase="'isManufacturer'"></app-console-mfr>
+        <app-console-admin *ngSwitchCase="'isAdmin'"></app-console-admin>
+    </div>
+    <br>
+</body>

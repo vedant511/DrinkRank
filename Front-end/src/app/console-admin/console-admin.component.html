@@ -1,0 +1,195 @@
+<br><br>
+<div>
+    <div>
+        <!--<h3 class="text-light bg-dark">Pending Posts</h3>-->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pending" data-toggle="tab" href="#pending" (click)="tabSelected('pending')" role="tab" aria-controls="pending" aria-selected="true">
+                    Pending
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="approved" data-toggle="tab" href="#approved" (click)="tabSelected('approved')" role="tab" aria-controls="approved" aria-selected="false">
+                    Approved
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="declined" data-toggle="tab" href="#declined" (click)="tabSelected('declined')" role="tab" aria-controls="declined" aria-selected="false">
+                    Declined
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="cancelled" data-toggle="tab" href="#cancelled" (click)="tabSelected('cancelled')" role="tab" aria-controls="cancelled" aria-selected="false">
+                    Cancelled
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <br>
+            <div class="card-deck">
+                <div class="col-lg-3" *ngFor="let post of adminPosts">
+                    <div class="card border-dark mb-3">
+                        <div class="card-header text-truncate" style="height: 25%">
+                            <div class="card-title">
+                                <strong>{{post['Name']}}</strong>
+                            </div>
+                            <div class="card-subtitle">
+                                {{post['ManufacturerName']}}
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!--<img class="card-img" src="../../assets/images/drink1.jpg" alt="Some Random Image">-->
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-6 text-info">
+                                            Beverage Type
+                                        </div>
+                                        <div class="col-lg-6 text-dark">
+                                            {{post['BeverageType']}}
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-6 text-info">
+                                            Category
+                                        </div>
+                                        <div class="col-lg-6 text-dark">
+                                            {{post['Category']}}
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-6 text-info">
+                                            Country
+                                        </div>
+                                        <div class="col-lg-6 text-dark">
+                                            {{post['Country']}}
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-6 text-info">
+                                            Vintage
+                                        </div>
+                                        <div class="col-lg-6 text-dark">
+                                            {{post['Vintage']}}
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-6 text-info">
+                                            Price
+                                        </div>
+                                        <div class="col-lg-6 text-dark">
+                                            {{post['Price']}} (USD)
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-6 text-info">
+                                            Alcohol %
+                                        </div>
+                                        <div class="col-lg-6 text-dark">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': post['Alcohol'] + '%'}"
+                                                     attr.aria-valuenow="{{post['Alcohol']}}" aria-valuemin="0" aria-valuemax="100">
+                                                    <b>{{post['Alcohol']}}</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-6 text-info">
+                                            Sweetness
+                                        </div>
+                                        <div class="col-lg-6 text-dark">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': post['Sweetness'] * 10 + '%'}"
+                                                     attr.aria-valuenow="{{post['Sweetness']}}" aria-valuemin="0" aria-valuemax="10">
+                                                    <b>{{post['Sweetness'] * 10}}</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 text-info">
+                                            Sourness
+                                        </div>
+                                        <div class="col-lg-6 text-dark">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': post['Sourness'] * 10 + '%'}"
+                                                     attr.aria-valuenow="{{post['Sourness']}}" aria-valuemin="0" aria-valuemax="10">
+                                                    <b>{{post['Sourness'] * 10}}</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 text-info">
+                                            Bitterness
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': post['Bitterness'] * 10 + '%'}"
+                                                     attr.aria-valuenow="{{post['Bitterness']}}" aria-valuemin="0" aria-valuemax="10">
+                                                    <b>{{post['Bitterness'] * 10}}</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </ul>
+                            <br>
+                            <div *ngIf="pending">
+                                <div class="button-row offset-lg-3">
+                                    <button class="btn btn-success" (click)="approvePost(post['ID'])">Approve</button>
+                                    <button class="btn btn-danger" (click)="declinePost(post['ID'])">Decline</button>
+                                </div>
+                            </div>
+                            <div *ngIf="approved">
+                                <div class="offset-lg-4">
+                                    <button class="btn btn-danger" (click)="declinePost(post['ID'])">Decline</button>
+                                </div>
+                            </div>
+                            <div *ngIf="declined">
+                                <div class="offset-lg-3">
+                                    <button class="btn btn-success" (click)="approvePost(post['ID'])">Approve</button>
+                                </div>
+                            </div>
+                            <div *ngIf="cancelled">
+
+                            </div>
+                        </div>
+                        <div class="card-footer text-dark">
+                            <div class="text-dark">
+                                Added on {{post['TimeStampAdded']}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

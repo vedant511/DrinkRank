@@ -1,0 +1,51 @@
+<div class="card col-8 offset-2 border-dark mb-3">
+  <div class="card-header">
+    <div class="media">
+      <img class="mr-3 img-fluid" style="width: 25%; height: 25%" src="../../assets/images/drink2.jpg" alt="Generic Manufacturer image">
+      <div class="media-body">
+        <h1 class="mt-lg-0">{{manuWines[0]['Manufacturer']}}</h1>
+        <i><h2 class="mt-lg-0">{{manuWines[0]['Country']}}</h2></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <h3 class="text-light bg-dark">Wines from this Manufacturer</h3>
+</div>
+
+<div class="offset-lg-11">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" (click)="pageManufacturer(1)">1</a></li>
+      <li class="page-item"><a class="page-link" (click)="pageManufacturer(2)">2</a></li>
+      <li class="page-item"><a class="page-link" (click)="pageManufacturer(3)">3</a></li>
+      <li class="page-item"><a class="page-link" (click)="pageManufacturer(4)">4</a></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="card-deck" >
+  <div class="col-lg-2" *ngFor="let wine of manuWines">
+    <div class="card border-dark mb-3">
+      <a routerLink="/wine/{{wine['ID']}}" class="text-dark">
+        <div class="card-header text-truncate" style="height: 25%">
+          <!--<div mat-card-avatar class="example-header-image"></div>-->
+          <div class="card-title">
+            <strong>{{wine['Name']}}</strong>
+          </div>
+          <div class="card-subtitle">
+            Avg Rating {{wine['Rating']}}
+          </div>
+        </div>
+        <div class="card-body">
+          <img class="card-img" src="../../assets/images/drink1.jpg" alt="Photo of Wine Bottles">
+        </div>
+        <div class="card-footer text-dark">
+          <button mat-button>{{wine['Country']}}</button>
+          <button mat-button>{{wine['Vintage']}}</button>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

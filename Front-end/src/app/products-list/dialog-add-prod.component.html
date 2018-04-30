@@ -1,0 +1,149 @@
+<form class="form-add-new-product" [formGroup]="addProductForm">
+
+  <mat-form-field class="input-field" id="product-name">
+    <input matInput placeholder="Name of the product" formControlName="productName">
+    <mat-error *ngIf="addProductForm.controls['productName'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field>
+    <mat-select placeholder="Beverage Type" formControlName="beverageType" [(ngModel)]="bType">
+      <mat-option *ngFor="let type of beverageType" [value]="type.value">
+        {{type.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addProductForm.controls['beverageType'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  &nbsp;&nbsp;
+  <mat-form-field *ngIf="bType==='Wine'">
+    <mat-select placeholder="Categories" formControlName="category">
+      <mat-option *ngFor="let cat of catWine" [value]="cat.value">
+        {{cat.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addProductForm.controls['category'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="bType==='Beer'">
+    <mat-select placeholder="Categories" formControlName="category">
+      <mat-option *ngFor="let cat of catBeer" [value]="cat.value">
+        {{cat.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addProductForm.controls['category'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="bType==='Cider'">
+    <mat-select placeholder="Categories" formControlName="category">
+      <mat-option *ngFor="let cat of catCider" [value]="cat.value">
+        {{cat.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addProductForm.controls['category'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="bType==='Hard Alcohol'">
+    <mat-select placeholder="Categories" formControlName="category">
+      <mat-option *ngFor="let cat of catHardAlcohol" [value]="cat.value">
+        {{cat.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addProductForm.controls['category'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+
+
+  <br>
+  <mat-form-field class="input-field">
+    <mat-select placeholder="Select Country" formControlName="country">
+      <mat-option *ngFor="let country of cList.countriesList" [value]="country">
+        {{country}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="addProductForm.controls['country'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field class="input-field">
+    <input matInput placeholder="Suggested Price" formControlName="price" pattern="^[0-9]+(\.[0-9]{1,2})?$">
+    <mat-error *ngIf="addProductForm.controls['price'].hasError('required')">
+      Required
+    </mat-error>
+    <mat-error *ngIf="addProductForm.controls['price'].hasError('pattern')">
+      The format is incorret
+    </mat-error>
+  </mat-form-field>
+  &nbsp;&nbsp;
+
+  <mat-form-field class="input-field">
+    <input matInput placeholder="Alcohol (without %)" formControlName="alcohol" pattern="^^(\d\d?(\.\d\d?)?|100(\.00?)?)$">
+    <mat-error *ngIf="addProductForm.controls['alcohol'].hasError('required')">
+      Required
+    </mat-error>
+    <mat-error *ngIf="addProductForm.controls['alcohol'].hasError('pattern')">
+      The format is incorret
+    </mat-error>
+  </mat-form-field>
+  &nbsp;&nbsp;
+
+  <mat-form-field class="input-field" *ngIf="(bType==='Wine') || (bType==='Hard Alcohol')">
+    <input matInput placeholder="Vintage" formControlName="vintage">
+    <mat-error *ngIf="addProductForm.controls['vintage'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+
+  <h6 class="text-secondary">Sweetness</h6>
+  <mat-slider class="col-md-8" [max]="tasteConfig['max']" [min]="tasteConfig['min']" [step]="tasteConfig['step']" [disabled]="tasteConfig['disabled']"
+    [invert]="tasteConfig['invert']" [thumb-label]="tasteConfig['thumbLabel']" [vertical]="tasteConfig['vertical']" [(ngModel)]="prodData['SweetnessFelt']"
+    [ngModelOptions]="{standalone: true}">
+  </mat-slider>
+  <span class="col-md-3 text-primary">
+    {{prodData['SweetnessFelt']}}
+  </span>
+
+
+  <h6 class="text-secondary">Sourness</h6>
+  <mat-slider class="col-md-8" [max]="tasteConfig['max']" [min]="tasteConfig['min']" [step]="tasteConfig['step']" [disabled]="tasteConfig['disabled']"
+    [invert]="tasteConfig['invert']" [thumb-label]="tasteConfig['thumbLabel']" [vertical]="tasteConfig['vertical']" [(ngModel)]="prodData['SournessFelt']"
+    [ngModelOptions]="{standalone: true}">
+  </mat-slider>
+  <span class="col-md-3 text-primary">
+    {{prodData['SournessFelt']}}
+  </span>
+
+  <h6 class="text-secondary">Bitterness</h6>
+  <mat-slider class="col-md-8" [max]="tasteConfig['max']" [min]="tasteConfig['min']" [step]="tasteConfig['step']" [disabled]="tasteConfig['disabled']"
+    [invert]="tasteConfig['invert']" [thumb-label]="tasteConfig['thumbLabel']" [vertical]="tasteConfig['vertical']" [(ngModel)]="prodData['BitternessFelt']"
+    [ngModelOptions]="{standalone: true}">
+  </mat-slider>
+  <span class="col-md-3 text-primary">
+    {{prodData['BitternessFelt']}}
+  </span>
+
+  <br>
+  <br>
+  <div class="op-section">
+    <button [disabled]="!addProductForm.valid" (click)="onSubmit()" mat-raised-button color="primary" id="btn-add-roduct">Submit</button>
+    <button mat-raised-button color="primary" (click)="onCancel()">Cancel</button>
+    <button type="reset" value="Reset" mat-raised-button color="primary">Reset</button>
+  </div>
+</form>

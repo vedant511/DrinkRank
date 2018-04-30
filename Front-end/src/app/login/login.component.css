@@ -1,0 +1,27 @@
+mat-dialog-content{
+    text-align: center;
+}
+
+.example-form {
+    max-width:30%;
+    margin: auto;
+    text-align: center;
+  }
+  
+.input-field {
+    width: 30%;
+    font-size: 20px;
+    font-family: "Helvetica Neue";
+ }
+
+ .op-section{
+  text-align: right;
+  max-width: 30%;
+  margin: auto;
+}  
+  
+ 
+  mat-icon {
+    display: flex;
+  }
+  

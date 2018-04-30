@@ -1,0 +1,31 @@
+<h1 align="center" style="font-family: Avenir" mat-dialog-title>Login</h1>
+<mat-dialog-content>
+    <form name="example-form" [formGroup]="logInForm">
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Email" formControlName="email" [(ngModel)]="model.email">
+            <mat-error *ngIf="logInForm.controls['email'].hasError('required')">
+                * Please enter your email
+            </mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field class="input-field">
+            <input type="password" matInput placeholder="Passowrd" formControlName="password" [(ngModel)]="model.password">
+            <mat-error *ngIf="logInForm.controls['password'].hasError('required')">
+                * Please enter your password
+            </mat-error>
+        </mat-form-field>
+
+        <div class="op-section">
+            <mat-error *ngIf="loginFail">
+                * Login fails, please check your email and password
+            </mat-error>
+            <br>
+            <button (click)="login()" mat-raised-button color="primary" [disabled]="loading">Login</button>
+            &nbsp;
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            &nbsp;
+        </div>
+    </form>
+</mat-dialog-content>
+

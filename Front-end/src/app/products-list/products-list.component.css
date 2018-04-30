@@ -1,0 +1,85 @@
+/* Structure */
+
+.prod-list-container {
+    display: flex;
+    flex-direction: column;
+    /*min-width: 300px;*/
+    max-width: 90%;
+}
+
+.prod-list-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+    position: relative;
+}
+
+.btn-add-prod {
+    position: absolute;
+    right: 45px;
+    top: 15px;
+}
+
+/* filter bar */
+
+.mat-form-field {
+    font-size: 14px;
+    width: 50%;
+}
+
+.mat-table {
+    overflow: auto;
+    /*max-height: 500px;*/
+}
+
+.mat-column-ID {
+    max-width: 50px;
+}
+
+.mat-column-Name {
+    min-width: 250px;
+}
+
+.mat-column-BeverageType {
+    max-width: 130px;
+}
+
+.mat-column-Category {
+    max-width: 150px;
+}
+
+.mat-column-Country {
+    /*max-width: 150px;*/
+}
+
+.mat-column-Vintage {
+    max-width: 100px;
+}
+
+.mat-column-Alcohol {
+    max-width: 80px;
+}
+
+.mat-column-Price {
+    max-width: 80px;
+}
+
+.mat-column-Sweetness {
+    max-width: 70px;
+}
+
+.mat-column-Sourness {
+    max-width: 70px;
+}
+
+.mat-column-Bitterness {
+    max-width: 70px;
+}
+
+.mat-column-Status {
+    max-width: 50px;
+}
+
+.mat-column-Management {
+    max-width: 200px;
+    text-align: center;
+}

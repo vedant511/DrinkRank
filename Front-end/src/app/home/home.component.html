@@ -1,0 +1,301 @@
+<!--
+<div class="row .col-md-4" *ngFor="let i of [1,2,3,4,5]">
+    <br>
+</div>
+<div class="jumbotron col-lg-4 offset-lg-4">
+    <h1 class="text-center display-4">DrinkRank</h1>
+</div>
+-->
+
+<img class="logo" src="../../assets/images/logo_DrinkRank.jpg" alt="Logo of DrinkRank">
+
+
+<div class="col-lg-6 offset-lg-3 mb-xl-5">
+    <div class="input-group input-group-lg">
+        <input type="text" class="form-control m-auto" [(ngModel)]="searchFilter.term" placeholder="Enter your Search Term">
+        <button class="btn btn-outline-primary" (click)="searchWines()">Search</button>
+    </div>
+</div>
+
+<div *ngIf="emptyTerms" class="col-lg-6 offset-lg-3 mb-xl-5">
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-title">
+                <h3 class="bg-dark text-light">Popular Wines</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <div *ngFor="let wine of topWines">
+                    <li class="list-group-item">{{wine.Name}}</li></div>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <h3 class="bg-dark text-light">Popular Manufacturers</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <div *ngFor="let manufacturer of topManufacturers">
+                        <li class="list-group-item">{{manufacturer['Name']}}</li></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="searchResult" class="mb-xl-5">
+    <div class="row">
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-header">
+                <h5>Filter Results</h5>
+            </div>
+            <div class="card-body">
+                <h6 class="text-secondary">Sweetness</h6>
+                <div class="container">
+                    <mat-slider
+                            class="col-md-8"
+                            [max]="tasteConfig['max']"
+                            [min]="tasteConfig['min']"
+                            [step]="tasteConfig['step']"
+                            [disabled]="tasteConfig['disabled']"
+                            [invert]="tasteConfig['invert']"
+                            [thumb-label]="tasteConfig['thumbLabel']"
+                            [(ngModel)]="searchFilter.Sweetness"
+                            [vertical]="tasteConfig['vertical']">
+                    </mat-slider>
+                    <span class="col-md-3 text-primary">
+                        {{searchFilter.Sweetness}}
+                    </span>
+                </div>
+
+                <h6 class="text-secondary">Sourness</h6>
+                <div class="container">
+                    <mat-slider
+                            class="col-md-8"
+                            [max]="tasteConfig['max']"
+                            [min]="tasteConfig['min']"
+                            [step]="tasteConfig['step']"
+                            [disabled]="tasteConfig['disabled']"
+                            [invert]="tasteConfig['invert']"
+                            [thumb-label]="tasteConfig['thumbLabel']"
+                            [(ngModel)]="searchFilter.Sourness"
+                            [vertical]="tasteConfig['vertical']">
+                    </mat-slider>
+                    <span class="col-md-3 text-primary">
+                        {{searchFilter.Sourness}}
+                    </span>
+                </div>
+
+                <h6 class="text-secondary">Bitterness</h6>
+                <div class="container">
+                    <mat-slider
+                            class="col-md-8"
+                            [max]="tasteConfig['max']"
+                            [min]="tasteConfig['min']"
+                            [step]="tasteConfig['step']"
+                            [disabled]="tasteConfig['disabled']"
+                            [invert]="tasteConfig['invert']"
+                            [thumb-label]="tasteConfig['thumbLabel']"
+                            [(ngModel)]="searchFilter.Bitterness"
+                            [vertical]="tasteConfig['vertical']">
+                    </mat-slider>
+                    <span class="col-md-3 text-primary">
+                        {{searchFilter.Bitterness}}
+                    </span>
+                </div>
+
+                <h6 class="text-secondary">Price</h6>
+                <div class="container">
+                    <mat-slider
+                            class="col-md-8"
+                            [max]="priceConfig['max']"
+                            [min]="priceConfig['min']"
+                            [step]="priceConfig['step']"
+                            [thumb-label]="priceConfig['thumbLabel']"
+                            [(ngModel)]="searchFilter.Price">
+                    </mat-slider>
+                    <span class="col-md-3 text-primary">
+                        {{searchFilter.Price}}
+                    </span>
+                </div>
+
+                <h6 class="text-secondary">Alcohol %</h6>
+                <div class="container">
+                    <mat-slider
+                            class="col-md-8"
+                            [max]="alcoholConfig['max']"
+                            [min]="alcoholConfig['min']"
+                            [step]="alcoholConfig['step']"
+                            [thumb-label]="alcoholConfig['thumbLabel']"
+                            [(ngModel)]="searchFilter.Alcohol">
+                    </mat-slider>
+                    <span class="col-md-3 text-primary">
+                        {{searchFilter.Alcohol}}
+                    </span>
+                </div>
+
+                <h6 class="text-secondary">Vintage</h6>
+                <div class="container">
+                    <mat-slider
+                            class="col-md-8"
+                            [max]="vintageConfig['max']"
+                            [min]="vintageConfig['min']"
+                            [step]="vintageConfig['step']"
+                            [thumb-label]="vintageConfig['thumbLabel']"
+                            [(ngModel)]="searchFilter.Vintage">
+                    </mat-slider>
+                    <span class="col-md-3 text-primary">
+                        {{searchFilter.Vintage}}
+                    </span>
+                </div>
+
+                <h6 class="text-secondary">Rating</h6>
+                <div class="container">
+                    <mat-slider
+                            class="col-md-8"
+                            [max]="ratingConfig['max']"
+                            [min]="ratingConfig['min']"
+                            [step]="ratingConfig['step']"
+                            [thumb-label]="ratingConfig['thumbLabel']"
+                            [(ngModel)]="searchFilter.Rating">
+                    </mat-slider>
+                    <span class="col-md-3 text-primary">
+                        {{searchFilter.Rating}}
+                    </span>
+                </div>
+
+                <div class="offset-lg-4 col-lg-4">
+                    <button class="btn btn-outline-primary" (click)="resetFilter()">Reset</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="spinner col-lg-9" *ngIf="filterLoading">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="!(filterLoading)" class="col-lg-9">
+        <div *ngIf="noResult">
+            <h5 class="text-secondary">No results found.</h5>
+        </div>
+
+        <div *ngIf="!(noResult)">
+            <div class="card-deck">
+                <div class="col-lg-4" *ngFor="let wine of filterResults">
+                    <div class="card border-dark mb-3">
+                        <a routerLink="/wine/{{wine.ID}}" class="text-dark">
+                            <div class="card-header text-truncate" style="height: 25%">
+                                <!--<div mat-card-avatar class="example-header-image"></div>-->
+                                <div class="card-title">
+                                    <strong>{{wine.Name}}</strong>
+                                </div>
+                                <div class="card-subtitle">
+                                    Rating {{wine.Rating}}
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <img class="card-img" src="../../assets/images/drink1.jpg" alt="Photo of a Shiba Inu">
+                            </div>
+                            <div class="card-footer text-dark">
+                                <button mat-button>{{wine.Country}}</button>
+                                <button mat-button>{{wine.Vintage}}</button>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div>
+    <h3 class="text-light bg-dark">Top Rated Wines</h3>
+</div>
+
+<div class="spinner" *ngIf="wineLoading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!(wineLoading)">
+    <div class="offset-lg-11">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" (click)="pageWine(1)">1</a></li>
+                <li class="page-item"><a class="page-link" (click)="pageWine(2)">2</a></li>
+                <li class="page-item"><a class="page-link" (click)="pageWine(3)">3</a></li>
+                <li class="page-item"><a class="page-link" (click)="pageWine(4)">4</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="card-deck" >
+        <div *ngFor="let wine of topWines" class="card border-dark mb-3">
+            <a routerLink="/wine/{{wine.ID}}" class="text-dark">
+                <div class="card-header text-truncate" style="height: 25%">
+                    <!--<div mat-card-avatar class="example-header-image"></div>-->
+                    <div class="card-title">
+                        <strong>{{wine.Name}}</strong>
+                    </div>
+                    <div class="card-subtitle">
+                        Avg Rating{{wine.Rating}}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img class="card-img" src="../../assets/images/drink1.jpg" alt="Photo of a Shiba Inu">
+                </div>
+                <div class="card-footer text-dark">
+                    <button mat-button>{{wine.Country}}</button>
+                    <button mat-button>{{wine.Vintage}}</button>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
+
+<div>
+    <h3 class="text-light bg-dark">Popular Manufacturers</h3>
+</div>
+
+<div class="spinner" *ngIf="manufacturerLoading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!(manufacturerLoading)">
+    <div class="offset-lg-11">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" (click)="pageManufacturer(1)">1</a></li>
+                <li class="page-item"><a class="page-link" (click)="pageManufacturer(2)">2</a></li>
+                <li class="page-item"><a class="page-link" (click)="pageManufacturer(3)">3</a></li>
+                <li class="page-item"><a class="page-link" (click)="pageManufacturer(4)">4</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="card-deck" >
+        <div *ngFor="let manufacturer of topManufacturers" class="card border-dark mb-3">
+            <a routerLink="/manufacturer/{{manufacturer['Email']}}" class="text-dark">
+                <div class="card-header text-truncate" style="height: 25%">
+                    <div class="card-title">
+                        <strong>{{manufacturer['Name']}}</strong>
+                    </div>
+                    <div class="card-subtitle">
+                        <i>{{manufacturer['Country']}}</i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img class="card-img" src="../../assets/images/wine1.jpeg" alt="Photo of a Shiba Inu">
+                </div>
+                <div class="card-footer text-dark">
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<br>

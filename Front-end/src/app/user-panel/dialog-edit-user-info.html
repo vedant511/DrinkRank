@@ -1,0 +1,36 @@
+<form class="form-edit-user-info" [formGroup]="editUserInfoForm">
+
+    <mat-form-field class="input-field" id="field-username">
+        <input matInput placeholder="Full Name" formControlName="username" [(ngModel)]="oldName" required>
+        <mat-error *ngIf="editUserInfoForm.controls['username'].hasError('required')">
+            Required
+        </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="input-field">
+        <input matInput placeholder="Phone Number" formControlName="phone" [(ngModel)]="oldPhone" required>
+        <mat-error *ngIf="editUserInfoForm.controls['phone'].hasError('required')">
+            Required
+        </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="input-field">
+        <mat-select placeholder="Select Country" formControlName="country" [(ngModel)]="oldCountry" required>
+            <mat-option *ngFor="let country of cList.countriesList" [value]="country">
+                {{country}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="editUserInfoForm.controls['country'].hasError('required')">
+            Required
+        </mat-error>
+    </mat-form-field>
+
+    <br>
+    <div class="op-section">
+        <button [disabled]="!editUserInfoForm.valid" (click)="onSubmit()" mat-raised-button color="primary" id="btn-edit-info">Submit</button>
+        <button mat-raised-button color="primary" (click)="onCancel()">Cancel</button>
+        <button type="reset" mat-raised-button color="primary">Clear All</button>
+    </div>
+</form>

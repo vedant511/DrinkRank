@@ -1,0 +1,24 @@
+body{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+}
+
+#talbe-user-info {
+    font-family: "Helvetica Neue";
+    border-collapse: collapse;
+    text-align: center; 
+}
+
+#talbe-user-info td, th {
+    border: 1px solid #ddd;
+    padding: 4px;
+    width: 150px;
+}
+
+#talbe-user-info tr:nth-child(odd) {
+    background-color: darkmagenta ;
+    color: white;
+}
+
+

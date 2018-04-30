@@ -1,0 +1,18 @@
+#product-list{
+    border: 1px solid black;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    
+}
+
+#product-list th{
+    color: white;
+    background-color: darkmagenta;
+}
+
+#product-list td, th{
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    
+}

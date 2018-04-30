@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <form class="d-flex flex-row-reverse">
+    <span class="btn-member" *ngIf="isLoggedIn$ | async as isLoggedIn; else notMember">
+      <button class="btn btn-outline-success my-2 my-sm-0 btn-nav" routerLink="/user-panel" type="submit">My Console</button>
+      <button class="btn btn-outline-success my-2 my-sm-0 btn-nav" routerLink="/logout" type="submit">Logout</button>
+    </span>
+    <ng-template #notMember>
+      <button class="btn btn-outline-success my-2 my-sm-0 btn-nav" (click)="openLoginDialog()" type="submit">Login</button>
+      <button class="btn btn-outline-success my-2 my-sm-0 btn-nav" (click)="openSignupDialog()" type="submit">Signup</button>
+    </ng-template>
+    <button class="btn btn-outline-success my-2 my-sm-0 btn-nav" routerLink="/home" type="submit">Home</button>
+  </form>
+</nav>

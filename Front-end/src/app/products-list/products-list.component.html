@@ -1,0 +1,110 @@
+<div class="prod-list-container mat-elevation-z8">
+  <div class="prod-list-header">
+    <!-- Filter -->
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <button mat-button mat-raised-button color="primary" class="btn-add-prod" (click)="onAddProd()"> Add Product </button>
+
+    <!-- Paging -->
+    <mat-paginator #paginator [length]="totalCount" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 15]">
+    </mat-paginator>
+  </div>
+
+  <!-- Body of table  -->
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="ID">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ID}} </mat-cell>
+    </ng-container>
+
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Name}} </mat-cell>
+    </ng-container>
+
+    <!-- BeverageType Column -->
+    <ng-container matColumnDef="BeverageType">
+      <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.BeverageType}} </mat-cell>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="Category">
+      <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Category}} </mat-cell>
+    </ng-container>
+
+    <!-- Conutry Column -->
+    <ng-container matColumnDef="Country">
+      <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Country}} </mat-cell>
+    </ng-container>
+
+    <!-- Vintage Column -->
+    <ng-container matColumnDef="Vintage">
+      <mat-header-cell *matHeaderCellDef> Vintage </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Vintage}} </mat-cell>
+    </ng-container>
+
+    <!-- Alcohol Column -->
+    <ng-container matColumnDef="Alcohol">
+      <mat-header-cell *matHeaderCellDef> Alcohol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Alcohol}} </mat-cell>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="Price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Price}} </mat-cell>
+    </ng-container>
+
+    <!-- Sweetness Column -->
+    <ng-container matColumnDef="Sweetness">
+      <mat-header-cell *matHeaderCellDef> Sweet </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Sweetness}} </mat-cell>
+    </ng-container>
+
+    <!-- Sourness Column -->
+    <ng-container matColumnDef="Sourness">
+      <mat-header-cell *matHeaderCellDef> Sour </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Sourness}} </mat-cell>
+    </ng-container>
+
+    <!-- Bitterness Column -->
+    <ng-container matColumnDef="Bitterness">
+      <mat-header-cell *matHeaderCellDef> Bitter </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Bitterness}} </mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Status}} </mat-cell>
+    </ng-container>
+
+    <!-- Management Column -->
+    <ng-container matColumnDef="Management">
+      <mat-header-cell *matHeaderCellDef> Management </mat-header-cell>
+      <mat-cell *matCellDef="let row; let idx = index">
+        <button mat-button color="primary" (click)="onEditProd(row, idx)"> Edit </button>
+        <button mat-button color="warn" (click)="onDelProd(row, idx)"> Delete </button>
+      </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
+<!--
+<div>
+  <image-upload [max]="1" ></image-upload>
+</div>
+-->

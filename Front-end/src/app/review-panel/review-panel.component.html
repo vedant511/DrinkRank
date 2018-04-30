@@ -1,0 +1,57 @@
+<h1 align="center" style="font-family: Avenir" mat-dialog-title>Add Review</h1>
+
+<mat-dialog-content>
+  <div class="offset-lg-3 col-lg-8">
+      <h6 class="text-secondary">Sweetness</h6>
+      <div class="container">
+        <mat-slider class="col-md-8" [max]="tasteConfig['max']" [min]="tasteConfig['min']" [step]="tasteConfig['step']" [disabled]="tasteConfig['disabled']"
+                    [invert]="tasteConfig['invert']" [thumb-label]="tasteConfig['thumbLabel']" [(ngModel)]="userReview['SweetnessFelt']"
+                    [vertical]="tasteConfig['vertical']">
+        </mat-slider>
+        <span class="col-md-3 text-primary">
+                  {{userReview['SweetnessFelt']}}
+                </span>
+      </div>
+
+      <h6 class="text-secondary">Sourness</h6>
+      <div class="container">
+        <mat-slider class="col-md-8" [max]="tasteConfig['max']" [min]="tasteConfig['min']" [step]="tasteConfig['step']" [disabled]="tasteConfig['disabled']"
+                    [invert]="tasteConfig['invert']" [thumb-label]="tasteConfig['thumbLabel']" [(ngModel)]="userReview['SournessFelt']"
+                    [vertical]="tasteConfig['vertical']">
+        </mat-slider>
+        <span class="col-md-3 text-primary">
+                  {{userReview['SournessFelt']}}
+                </span>
+      </div>
+
+      <h6 class="text-secondary">Bitterness</h6>
+      <div class="container">
+        <mat-slider class="col-md-8" [max]="tasteConfig['max']" [min]="tasteConfig['min']" [step]="tasteConfig['step']" [disabled]="tasteConfig['disabled']"
+                    [invert]="tasteConfig['invert']" [thumb-label]="tasteConfig['thumbLabel']" [(ngModel)]="userReview['BitternessFelt']"
+                    [vertical]="tasteConfig['vertical']">
+        </mat-slider>
+        <span class="col-md-3 text-primary">
+                  {{userReview['BitternessFelt']}}
+                </span>
+      </div>
+
+      <h6 class="text-secondary">Overall Stars</h6>
+      <div class="container">
+        <mat-slider class="col-md-8" [max]="starConfig['max']" [min]="starConfig['min']" [step]="starConfig['step']" [disabled]="starConfig['disabled']"
+                    [invert]="starConfig['invert']" [thumb-label]="starConfig['thumbLabel']" [(ngModel)]="userReview['Stars']" [vertical]="starConfig['vertical']">
+        </mat-slider>
+        <span class="col-md-3 text-primary">
+                  {{userReview['Stars']}}
+                </span>
+      </div>
+
+      <h6 class="text-secondary">Comments</h6>
+      <textarea rows=4 class="col-md-8" [(ngModel)]="userReview['Content']"></textarea>
+      <br><br>
+      <recaptcha style="margin: auto; text-align: center;" [(ngModel)]="myRecaptcha"></recaptcha><br>
+    <div class="review">
+      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Close</button>
+      <button type="button" class="btn btn-primary" (click)="postReview()" [disabled]="!myRecaptcha">Submit</button>
+    </div>
+  </div>
+</mat-dialog-content>

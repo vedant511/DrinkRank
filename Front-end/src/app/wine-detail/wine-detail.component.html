@@ -1,0 +1,120 @@
+<div class="card col-8 offset-2 border-dark mb-3">
+
+  <div class="media">
+    <img class="mr-3 img-fluid" style="width: 25%; height: 25%" src="../../assets/images/drink2.jpg" alt="Generic Manufacturer image">
+    <div class="media-body">
+      <h2 class="mt-lg-0">{{wineDetail['Name']}}</h2>
+      <h3 class="mt-lg-0">{{wineDetail['ManufacturerName']}}</h3>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h3 class="text-light bg-dark">Country</h3>
+        <h4>{{wineDetail['Country']}}</h4>
+      </div>
+
+      <div class="col">
+        <h3 class="text-light bg-dark">Category</h3>
+        <h4>{{wineDetail['Category']}} {{wineDetail['BeverageType']}}</h4>
+      </div>
+
+      <div class="col">
+        <h3 class="text-light bg-dark">Alcohol %</h3>
+        <h4>{{wineDetail['Alcohol']}}</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h3 class="text-light bg-dark">Avg Rating</h3>
+        <h4>{{wineDetail['Rating']}}</h4>
+      </div>
+
+      <div class="col">
+        <h3 class="text-light bg-dark">Vintage</h3>
+        <h4>{{wineDetail['Vintage']}}</h4>
+      </div>
+
+      <div class="col">
+        <h3 class="text-light bg-dark">Price (USD)</h3>
+        <h4>{{wineDetail['Price']}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <h2 class="col-lg-2">User Reviews</h2>
+  <div *ngIf="registeredUser" class="col-lg-1">
+    <button type="button" class="btn btn-primary" (click)="openReviewDialog()">Add Comment</button>
+  </div>
+
+
+</div>
+<div class="card-deck">
+  <div *ngFor="let review of wineReviews" class="card col-lg-3">
+
+    <div class="card-header">
+      <div class="card-title">
+        {{review['Reviewer']}}
+      </div>
+    </div>
+
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-lg-6">Bitterness</div>
+
+            <div class="col-lg-6">
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': review['BitternessFelt'] * 10 + '%'}" attr.aria-valuenow="{{review['BitternessFelt']}}"
+                  aria-valuemin="0" aria-valuemax="10">
+                  {{review['BitternessFelt']*10}}%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">Sweetness</div>
+
+            <div class="col-lg-6">
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': review['SweetnessFelt'] * 10 + '%'}" attr.aria-valuenow="{{review['SweetnessFelt']}}"
+                  aria-valuemin="0" aria-valuemax="10">
+                  {{review['SweetnessFelt']*10}}%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">Sourness</div>
+
+            <div class="col-lg-6">
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': review['SournessFelt'] * 10 + '%'}" attr.aria-valuenow="{{review['SournessFelt']}}"
+                  aria-valuemin="0" aria-valuemax="10">
+                  {{review['SournessFelt']*10}}%
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </li>
+
+        <li class="list-group-item">
+          <div class="card-text">
+            {{review.Content}}
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<h1 align="center" style="font-family: Avenir" mat-dialog-title>SignUp</h1>
+<mat-dialog-content>
+    <form class="example-form" [formGroup]="signUpForm">
+
+    <mat-radio-group class="example-radio-group; input-field" (click)="signUpForm.reset()" [(ngModel)]="userSignup" [ngModelOptions]="{standalone: true}">
+    <mat-radio-button #user class="example-radio-button" checked="true" value="User">User</mat-radio-button>
+    <mat-radio-button class="example-radio-button" value="Manufacturer">Manufacturer</mat-radio-button>
+    </mat-radio-group>
+    <br><br>
+
+    <mat-form-field class="input-field">
+    <input matInput placeholder="Name" formControlName="name">
+    <mat-error *ngIf="signUpForm.controls['name'].hasError('required')">
+    Please enter your name
+    </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <div *ngIf="userSignup === user.value" >
+    <mat-form-field class="input-field">
+    <input matInput [max]="startDate" formControlName="dob" [matDatepicker]="picker" placeholder="Date of Birth">
+    <mat-error *ngIf="signUpForm.controls['dob'].hasError('required')">
+    Choose your Date of Birth
+    </mat-error>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker startView="multi-year" [startAt]="startDate" disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <br><br>
+    </div>
+
+    <mat-form-field class="input-field">
+    <input matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="signUpForm.controls['email'].hasError('email')">
+    Please enter a valid email address
+    </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field class="input-field">
+    <input matInput placeholder="Confirm Email" formControlName="confirmmail">
+    <mat-error *ngIf="!(signUpForm.controls['email'].value === signUpForm.controls['confirmmail'].value)">
+    Email fields <strong>do not match!</strong>
+    </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field class="input-field" hintLabel="Enter 6 to 16 characters">
+    <input matInput minlength="6" formControlName="password" maxlength="16" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+    <!--<mat-error *ngIf="signUpForm.controls['password'].hasError('maxlength') || signUpForm.controls['password'].hasError('minlength')">-->
+    <!--Password should be <strong>6 to 16 characters!</strong>-->
+    <!--</mat-error>-->
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    <mat-hint align="end">{{signUpForm.controls['password'].value?.length || 0}}/16</mat-hint>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field class="input-field">
+    <input matInput placeholder="Confirm Password" formControlName="confirmpass" [type]="hide ? 'password' : 'text'">
+    <mat-error *ngIf="!(signUpForm.controls['password'].value === signUpForm.controls['confirmpass'].value)">
+    Password fields <strong>do not match!</strong>
+    </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field class="input-field">
+    <mat-select formControlName="country" placeholder="Select Country" name="country">
+    <mat-option *ngFor="let country of countries.countriesList" [value]="country">
+    {{country}}
+    </mat-option>
+    </mat-select>
+    <mat-error *ngIf="signUpForm.controls['country'].hasError('required')">
+    Select your Origin Country
+    </mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <button (click)="onSubmit()" mat-raised-button color="primary">Register</button>
+    </form>
+
+</mat-dialog-content>
+

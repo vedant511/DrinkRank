@@ -1,0 +1,123 @@
+<form class="form-edit-new-product" [formGroup]="editProductForm">
+
+  <mat-form-field class="input-field" id="product-name">
+    <input matInput placeholder="Name of the product" formControlName="productName" [(ngModel)]="selectedName" required>
+    <mat-error *ngIf="editProductForm.controls['productName'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field>
+    <mat-select placeholder="Beverage Type" formControlName="beverageType" [(ngModel)]="selectedType" required>
+      <mat-option *ngFor="let type of beverageType" [value]="type.value">
+        {{type.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="editProductForm.controls['beverageType'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  &nbsp;&nbsp;
+  <mat-form-field *ngIf="selectedType==='Wine'">
+    <mat-select placeholder="Categories" formControlName="category" [(ngModel)]="selectedCat" required>
+      <mat-option *ngFor="let cat of catWine" [value]="cat.value">
+        {{cat.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="editProductForm.controls['category'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="selectedType==='Beer'">
+    <mat-select placeholder="Categories" formControlName="category" [(ngModel)]="selectedCat" required>
+      <mat-option *ngFor="let cat of catBeer" [value]="cat.value">
+        {{cat.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="editProductForm.controls['category'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="selectedType==='Cider'">
+    <mat-select placeholder="Categories" formControlName="category" [(ngModel)]="selectedCat" required>
+      <mat-option *ngFor="let cat of catCider" [value]="cat.value">
+        {{cat.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="editProductForm.controls['category'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="selectedType==='Hard Alcohol'">
+    <mat-select placeholder="Categories" formControlName="category" [(ngModel)]="selectedCat" required>
+      <mat-option *ngFor="let cat of catHardAlcohol" [value]="cat.value">
+        {{cat.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="editProductForm.controls['category'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+
+
+  <br>
+  <mat-form-field class="input-field">
+    <mat-select placeholder="Select Country" formControlName="country" [(ngModel)]="selectedCountry" required>
+      <mat-option *ngFor="let country of cList.countriesList" [value]="country">
+        {{country}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="editProductForm.controls['country'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field class="input-field">
+    <input matInput placeholder="Suggested Price" formControlName="price" 
+        pattern="^[0-9]+(\.[0-9]{1,2})?$" [(ngModel)]="selectedPrice" required>
+    <mat-error *ngIf="editProductForm.controls['price'].hasError('required')">
+      Required
+    </mat-error>
+    <mat-error *ngIf="editProductForm.controls['price'].hasError('pattern')">
+      The format is incorret
+    </mat-error>
+  </mat-form-field>
+  &nbsp;&nbsp;
+
+  <mat-form-field class="input-field">
+    <input matInput placeholder="Alcohol (without %)" formControlName="alcohol"
+        pattern="^^(\d\d?(\.\d\d?)?|100(\.00?)?)$" [(ngModel)]="selectedAlcohol" required>
+    <mat-error *ngIf="editProductForm.controls['alcohol'].hasError('required')">
+      Required
+    </mat-error>
+    <mat-error *ngIf="editProductForm.controls['alcohol'].hasError('pattern')">
+      The format is incorret
+    </mat-error>
+  </mat-form-field>
+  &nbsp;&nbsp;
+
+  <mat-form-field class="input-field" *ngIf="(selectedType==='Wine') || (selectedType==='Hard Alcohol')">
+    <input matInput placeholder="Vintage" formControlName="vintage"  [(ngModel)]="selectedVintage" required>
+    <mat-error *ngIf="editProductForm.controls['vintage'].hasError('required')">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+  <div class="op-section">
+    <button [disabled]="!editProductForm.valid" (click)="onSubmit()" 
+          mat-raised-button color="primary" id="btn-add-roduct">Submit</button>
+    <button mat-raised-button color="primary" (click)="onCancel()" >Cancel</button>
+    <button type="reset" mat-raised-button color="primary">Clear All</button>
+  </div>
+</form>
