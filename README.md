@@ -19,7 +19,7 @@ Repository for SER517-Group20 for DrinkRank project
 
 ## Using the Application
 
-1. Go to[this](http://drink-rank-dev.s3-website-us-west-2.amazonaws.com/)link.
+1. Go to [this](http://drink-rank-dev.s3-website-us-west-2.amazonaws.com/) link.
 
 ## Reference
 Original template for the front-end:
