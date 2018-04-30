@@ -17,6 +17,9 @@ Repository for SER517-Group20 for DrinkRank project
 6. A deployment script `/scripts/deploy.js` is created. 
    Follow the setup guide inside `deploy.js` and use `npm run deploy` to build and deploy to AWS S3.
 
+## Using the Application
+
+1. Go to[this](http://drink-rank-dev.s3-website-us-west-2.amazonaws.com/)link.
 
 ## Reference
 Original template for the front-end:
